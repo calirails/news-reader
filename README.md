@@ -1,6 +1,6 @@
 # news-briefs
 
-> A Vue.js project
+> A Vue.js tutorial from https://buttercms.com/blog/build-a-beautiful-animated-news-app-with-vuejs-and-vuetify?utm_campaign=Vue.js%20News&utm_medium=email&utm_source=Revue%20newsletter
 
 ## Build Setup
 
