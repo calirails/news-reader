@@ -1,6 +1,8 @@
 <template>
   <v-app light>
-    <!--The Side Menu component go here -->
+    <!--The SideBar menu component go here -->
+    <SideBar :NewsAPIKey='NewsAPIKey' :drawer='drawer' 
+      v-on:selectSource='setNewsChannel'/>
     <v-toolbar fixed app light clipped-left color="primary" class="elevation-2">
       <v-toolbar-side-icon @click="drawer = !drawer" class="white--text"></v-toolbar-side-icon>
       <v-toolbar-title class="white--text">News App</v-toolbar-title>
@@ -8,7 +10,7 @@
     <v-content>
       <v-container fluid>
         <!--The Main Content component go here-->
-        <NewsArticles v-bind:articles='this.articles' />
+        <NewsArticles :articles='articles' />
       </v-container>
     </v-content>
     <v-footer class="secondary" app>
@@ -32,28 +34,43 @@
 </template>
 <script>
   import Axios from 'axios'
+  import SideBar from '@/components/SideBar'
   import NewsArticles from '@/components/NewsArticles.vue'
-  const NewsAPIKey = 'b8f2d3ccc2de4b108a18205b2ae9d2c6'
+  // const NewsAPIKey = 'b8f2d3ccc2de4b108a18205b2ae9d2c6'
   
   export default {
     components: {
-      NewsArticles
+      NewsArticles,
+      SideBar
     },
     data() {
       return {
+        NewsAPIKey:  'b8f2d3ccc2de4b108a18205b2ae9d2c6', 
         drawer: true,
         articles: [],
         errors: []
       };
     },
     async created() {
-      const requestUrl = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${NewsAPIKey}`
+      const requestUrl = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${this.NewsAPIKey}`
       console.log(`RequestUrl: ${requestUrl}`)
       await Axios.get(requestUrl)
         .then(response => {
           console.log(`Response of articles: ${response.data.articles}`)
           this.articles = response.data.articles
         }).catch(error => this.errors.push(error))
+    },
+    methods: {
+      setNewsChannel(channelId) {
+        const requestUrl = `https://newsapi.org/v2/top-headlines?sources=${channelId}&apiKey=${this.NewsAPIKey}`
+        console.log(`RequestUrl: ${requestUrl}`)
+        Axios.get(requestUrl)
+          .then(response => this.articles = response.data.articles)
+          .catch(error => {
+            console.log(`Fetch News for channel error: ${error}`)
+            this.errors.push(error)
+          })
+      }
     }
   };
 </script>
