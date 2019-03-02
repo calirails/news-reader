@@ -2,12 +2,13 @@
     <v-app dark>
         <!--Top Menu Navigation -->
         <v-toolbar fixed app light clipped-left color="black" class="elevation-2">
-            <v-toolbar-side-icon @click="drawer=!drawer" class="white--text"></v-toolbar-side-icon>
+            <v-toolbar-side-icon @click="toggleSideBar" class="white--text"></v-toolbar-side-icon>
             <v-toolbar-title class="white--text">News App</v-toolbar-title>
         </v-toolbar>
         <!--The SideBar menu component go here -->
         <SideBar v-bind:NewsAPIKey='NewsAPIKey' 
             v-bind:drawer='drawer' 
+            v-on:blur='toggleSideBar'
             v-on:selectSource='setNewsChannel'/>
         <!--Main Content -->
         <v-content>
@@ -64,15 +65,19 @@
                 }).catch(error => this.errors.push(error))
         },
         methods: {
-            setNewsChannel(channelId) {
-                const requestUrl = `https://newsapi.org/v2/top-headlines?sources=${channelId}&apiKey=${this.NewsAPIKey}`
-                console.log(`RequestUrl: ${requestUrl}`)
-                Axios.get(requestUrl)
-                  .then(response => this.articles = response.data.articles)
-                  .catch(error => {
-                    console.log(`Fetch News for channel error: ${error}`)
-                    this.errors.push(error)
-                  })
+          toggleSideBar(){
+              this.drawer = !this.drawer
+              console.log(`toggled drawer to: ${this.drawer}`)
+          },
+          setNewsChannel(channelId) {
+              const requestUrl = `https://newsapi.org/v2/top-headlines?sources=${channelId}&apiKey=${this.NewsAPIKey}`
+              console.log(`App::setNewsChannel - RequestUrl: ${requestUrl}`)
+              Axios.get(requestUrl)
+                .then(response => this.articles = response.data.articles)
+                .catch(error => {
+                  console.log(`Fetch News for channel error: ${error}`)
+                  this.errors.push(error)
+                })
             }
         }
     };

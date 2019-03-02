@@ -32,7 +32,6 @@ export default {
         sources: [],
         errors: []
     }),
-
     created() {
         const requestUrl = `https://newsapi.org/v2/sources?language=en&apiKey=${this.NewsAPIKey}`
         Axios
@@ -44,12 +43,10 @@ export default {
             this.errors.push(e);
         });
     },
-
     methods: {
         getImgUrl(pic) {
             return require("../assets/images/" + pic + ".png");
         },
-
         selectSource(sourceId) {
             this.$emit("selectSource", sourceId);
         }
