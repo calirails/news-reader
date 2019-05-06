@@ -13,7 +13,8 @@
     "aos": "^2.3.4",
     "axios": "^0.18.0",
     "vue": "^2.5.2",
-    "vuetify": "^1.5.1"
+    "vuetify": "^1.5.1",
+    "vuetify-tsx": "^0.24.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

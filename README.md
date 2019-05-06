@@ -1,6 +1,10 @@
 # news-briefs
 
-> A Vue.js tutorial from https://buttercms.com/blog/build-a-beautiful-animated-news-app-with-vuejs-and-vuetify?utm_campaign=Vue.js%20News&utm_medium=email&utm_source=Revue%20newsletter
+> A Vue.js tutorial that uses TSX for its strongly typed templating support, and Vuetify for the goodness of Google Material. The baseline for the project is older but is derived from https://buttercms.com/blog/build-a-beautiful-animated-news-app-with-vuejs-and-vuetify?utm_campaign=Vue.js%20News&utm_medium=email&utm_source=Revue%20newsletter
+
+For TSX and adaptations to work with Vue, see: https://scotch.io/tutorials/using-jsx-with-vue-and-why-you-should-care
+
+For Vuetify with TSX support see: https://www.npmjs.com/package/vuetify-tsx
 
 ## Build Setup
 
