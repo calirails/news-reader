@@ -1,8 +1,8 @@
 <template>
   <v-layout row wrap align-center>
     <v-flex xs8 offset-md2>
-      <div v-for="article in articles" :key="article.title">
-        <v-card class="my-3" hover data-aos='zoom-in' data-aos-easing='ease'>
+      <div v-for="(article, index) in articles" :key="article.title">
+        <v-card class="my-3" hover v-bind:data-aos='aosEffect(index)' data-aos-easing='ease'>
           <v-img height="350px" v-bind:src="article.urlToImage"></v-img>
           <v-container fill-height fluid>
             <v-layout>
@@ -44,6 +44,13 @@
 export default {
   props: {
     articles: Array
+  },
+  methods: {
+    aosEffect: function(index) {
+      var effect = index % 2 === 0 ? 'fade-right' : 'fade-left' 
+      console.log(`assigned animation=${effect} for index=${index}.`)
+      return effect;
+    }
   }
 };
 </script>
