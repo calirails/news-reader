@@ -9,7 +9,7 @@
         <SideBar v-bind:NewsAPIKey='NewsAPIKey' 
             v-bind:drawer='drawer' 
             v-on:blur='toggleSideBar'
-            v-on:selectSource='setNewsChannel'/>
+            v-on:selectSource='setNewsSource'/>
         <!--Main Content -->
         <v-content>
             <v-container fluid>
@@ -26,9 +26,9 @@
                         <a class="white--text" href="https://vuetifyjs.com" target="_blank">Vuetify</a>
                         and
                         <a
-                          class="white--text"
-                          href="https://github.com/rachidsakara"
-                          target="_blank"
+                            class="white--text"
+                            href="https://github.com/rachidsakara"
+                            target="_blank"
                         >Rachid Sakara</a>
                     </div>
                 </v-flex>
@@ -41,12 +41,12 @@
     import SideBar from '@/components/SideBar'
     import NewsArticles from '@/components/NewsArticles.vue'
     // const NewsAPIKey = 'b8f2d3ccc2de4b108a18205b2ae9d2c6'
-  
+
     export default {
         components: {
             NewsArticles,
             SideBar
-          },
+        },
         data() {
             return {
                 NewsAPIKey:  'b8f2d3ccc2de4b108a18205b2ae9d2c6', 
@@ -65,18 +65,18 @@
                 }).catch(error => this.errors.push(error))
         },
         methods: {
-          toggleSideBar(){
-              this.drawer = !this.drawer
-              console.log(`toggled drawer to: ${this.drawer}`)
-          },
-          setNewsChannel(channelId) {
-              const requestUrl = `https://newsapi.org/v2/top-headlines?sources=${channelId}&apiKey=${this.NewsAPIKey}`
-              console.log(`App::setNewsChannel - RequestUrl: ${requestUrl}`)
-              Axios.get(requestUrl)
-                .then(response => this.articles = response.data.articles)
-                .catch(error => {
-                  console.log(`Fetch News for channel error: ${error}`)
-                  this.errors.push(error)
+            toggleSideBar(){
+                this.drawer = !this.drawer
+                console.log(`toggled drawer to: ${this.drawer}`)
+            },
+            setNewsSource(sourceId) {
+                const requestUrl = `https://newsapi.org/v2/top-headlines?sources=${sourceId}&apiKey=${this.NewsAPIKey}`
+                console.log(`App::setNewsChannel - RequestUrl: ${requestUrl}`)
+                Axios.get(requestUrl)
+                    .then(response => this.articles = response.data.articles)
+                    .catch(error => {
+                        console.log(`Fetch News for channel error: ${error}`)
+                        this.errors.push(error)
                 })
             }
         }

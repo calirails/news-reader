@@ -1,6 +1,6 @@
 # news-briefs
 
-> A Vue.js tutorial that uses TSX for its strongly typed templating support, and Vuetify for the goodness of Google Material. The baseline for the project is older but is derived from https://buttercms.com/blog/build-a-beautiful-animated-news-app-with-vuejs-and-vuetify?utm_campaign=Vue.js%20News&utm_medium=email&utm_source=Revue%20newsletter
+A Vue.js tutorial that uses TSX for its strongly typed templating support, and Vuetify for the goodness of Google Material. The baseline for the project is older but is derived from https://buttercms.com/blog/build-a-beautiful-animated-news-app-with-vuejs-and-vuetify?utm_campaign=Vue.js%20News&utm_medium=email&utm_source=Revue%20newsletter
 
 For TSX and adaptations to work with Vue, see: https://scotch.io/tutorials/using-jsx-with-vue-and-why-you-should-care
 
@@ -13,7 +13,7 @@ For Vuetify with TSX support see: https://www.npmjs.com/package/vuetify-tsx
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev (notice: this runs on older < Vue 3.x CLI and therefore does not start with `npm run serve`)
+npm run dev (notice: this runs on older < Vue 3.x CLI and therefore does not yet support starting web site with `npm run serve`)
 
 # build for production with minification
 npm run build
