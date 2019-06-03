@@ -3,7 +3,7 @@
         <!--Top Menu Navigation -->
         <v-toolbar fixed app light clipped-left color="black" class="elevation-2">
             <v-toolbar-side-icon @click="toggleSideBar" class="white--text"></v-toolbar-side-icon>
-            <v-toolbar-title class="white--text">Calvin's Broadcasting Corp</v-toolbar-title>
+            <v-toolbar-title class="white--text">THC - Today's Headlines (w/Calvin)</v-toolbar-title>
         </v-toolbar>
         <!--The SideBar menu component go here -->
         <SideBar v-bind:NewsAPIKey='NewsAPIKey' 
