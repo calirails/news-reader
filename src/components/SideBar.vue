@@ -27,7 +27,6 @@ export default {
         NewsAPIKey: String,
         drawer: Boolean
     },
-
     data: () => ({
         sources: [],
         errors: []

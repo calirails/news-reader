@@ -8,7 +8,7 @@
         <!--The SideBar menu component go here -->
         <SideBar v-bind:NewsAPIKey='NewsAPIKey' 
             v-bind:drawer='drawer' 
-            v-on:blur='toggleSideBar'
+            v-on:blur.capture='onBlurToToggleSideBar'
             v-on:selectSource='setNewsSource'/>
         <!--Main Content -->
         <v-content>
@@ -41,7 +41,7 @@
     import SideBar from '@/components/SideBar'
     import NewsArticles from '@/components/NewsArticles.vue'
     // const NewsAPIKey = 'b8f2d3ccc2de4b108a18205b2ae9d2c6'
-
+    
     export default {
         components: {
             NewsArticles,
@@ -63,11 +63,19 @@
                     console.log(`Response of articles: ${response.data.articles}`)
                     this.articles = response.data.articles
                 }).catch(error => this.errors.push(error))
+            
+            console.log(`Sidebar currently displayed: ${this.drawer}`)
         },
         methods: {
             toggleSideBar(){
+                const before = this.drawer
                 this.drawer = !this.drawer
-                console.log(`toggled drawer to: ${this.drawer}`)
+                console.log(`App::toggleSideBar() toggled 'drawer' value from: ${before} to: ${this.drawer}`)
+            },
+            onBlurToToggleSideBar() {
+                const before = this.drawer
+                this.drawer = !this.drawer
+                console.log(`App::onBlurToToggleSideBar() toggled 'drawer' value from: ${before} to: ${this.drawer}`)
             },
             setNewsSource(sourceId) {
                 const requestUrl = `https://newsapi.org/v2/top-headlines?sources=${sourceId}&apiKey=${this.NewsAPIKey}`
